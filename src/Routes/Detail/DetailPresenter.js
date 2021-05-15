@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "Components/Loader";
-import  Helmet  from "react-helmet";
+import Helmet from "react-helmet";
 
 const Cotainer = styled.div`
   height: calc(100vh - 50px);
@@ -80,10 +80,7 @@ const DetailPresenter = ({ result, loading, error }) =>
   ) : (
     <Cotainer>
       <Helmet>
-        <title>
-          {result.original_title ? result.original_title : result.original_name}{" "}
-          | Nomflix
-        </title>
+        <title>{result.original_title || result.original_name} | Nomflix</title>
       </Helmet>
       <Backdrop
         bgImage={`http://image.tmdb.org/t/p/original${result.backdrop_path}`}
