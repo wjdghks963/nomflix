@@ -1,4 +1,4 @@
-/*eslint-disable*/
+/*eslint-disable*/ // << eslint 무시
 import React from "react";
 import { moviesApi, tvApi } from "api";
 import DetailPresenter from "./DetailPresenter";
