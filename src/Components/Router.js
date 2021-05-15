@@ -27,3 +27,5 @@ export default () => (
     </>
   </Router>
 );
+
+// 브라우저 라우트 사용시 path = "https://wjdghks963.github.io/nomflix/~" <<
