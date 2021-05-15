@@ -33,12 +33,10 @@ export default class extends React.Component {
     try {
       if (isMovie) {
         ({
-          data: { result }, // data가 result이다.  == result.data ()안에 넣었기 때문에 위의 result = null과 다름
+          data: result, // data가 result이다.  == result.data ()안에 넣었기 때문에 위의 result = null과 다름
         } = await moviesApi.movieDetail(parsedId));
       } else {
-        ({
-          data: { result },
-        } = await tvApi.showDetail(parsedId));
+        ({ data: result } = await tvApi.showDetail(parsedId));
       }
     } catch {
       this.setState({ error: "Cant't find anything." });
