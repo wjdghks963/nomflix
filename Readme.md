@@ -31,3 +31,5 @@ Learning React & ES6
 ### tip
 
 export default class extends React.Component => 컴포너트를 class or 함수로 정의 가능
+
+Proptyes =>> https://ko.reactjs.org/docs/typechecking-with-proptypes.html
