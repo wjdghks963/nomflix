@@ -76,11 +76,16 @@ const DBLink = styled.a`
 
 const LogoContainer = styled.div`
   padding-top: 15px;
+  display: relative;
 `;
 
 const Logo = styled.img`
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 30px;
+`;
+
+const Company = styled.div`
+  display: flex;
 `;
 
 const VideoContainer = styled.div`
@@ -91,6 +96,14 @@ const VideoContainer = styled.div`
 const Video = styled.iframe`
   padding-right: 25px;
 `;
+
+const ThumContainer = styled.div``;
+
+const Thum = styled.img`
+  width: 150px;
+  height: 150px;
+`;
+const Seasons = styled.div``;
 
 const DetailPresenter = ({ result, loading, error }) =>
   loading ? (
@@ -144,9 +157,17 @@ const DetailPresenter = ({ result, loading, error }) =>
                 )}
             </Item>
             <LogoContainer>
-              {result.production_companies.map((logo) => (
-                <Logo src={`http://image.tmdb.org/t/p/w500${logo.logo_path}`} />
-              ))}
+              {result.production_companies.map((logo) =>
+                logo.logo_path === null ? null : (
+                  <Company>
+                    <text>{logo.name}</text>
+                    <Logo
+                      src={`http://image.tmdb.org/t/p/w500${logo.logo_path}`}
+                    />
+                  </Company>
+                )
+              )}
+              {console.log(result.production_companies)}
             </LogoContainer>
           </ItemContainer>
           <Overview>{result.overview}</Overview>
@@ -154,7 +175,8 @@ const DetailPresenter = ({ result, loading, error }) =>
             Go to IMDB Detail
           </DBLink>
           <VideoContainer>
-            {result.videos.results.length > 1 ? (
+            {result.videos.results.length === 0 ? null : result.videos.results
+                .length > 1 ? (
               <>
                 <Video
                   src={`https://www.youtube.com/embed/${result.videos.results[0].key}`}
@@ -172,6 +194,19 @@ const DetailPresenter = ({ result, loading, error }) =>
             )}
           </VideoContainer>
         </Data>
+        {console.log(result.seasons.map((name) => name))}
+        <Seasons>
+          {result.seasons.map((thum) =>
+            thum === 0 || thum.poster_path === null ? null : (
+              <ThumContainer>
+                <Title>{thum.name}</Title>
+                <Thum
+                  src={`http://image.tmdb.org/t/p/w300/${thum.poster_path}`}
+                />
+              </ThumContainer>
+            )
+          )}
+        </Seasons>
       </Content>
     </Cotainer>
   );
