@@ -208,7 +208,7 @@ const DetailPresenter = ({ result, loading, error }) =>
               )}
         </Seasons>
         <Seasons>
-          {result.belongs_to_collection === null
+          {result.belongs_to_collection === undefined
             ? null
             : new Array(result.belongs_to_collection).map((thum) =>
                 thum.poster_path === null ? null : (
