@@ -193,11 +193,12 @@ const DetailPresenter = ({ result, loading, error }) =>
             )}
           </VideoContainer>
         </Data>
+        {/*TV*/}
         <Seasons>
-          {result.seasons === undefined
+          {result.seasons == undefined
             ? null
             : result.seasons.map((thum) =>
-                thum.length === 0 || thum.poster_path === null ? null : (
+                thum.length === 0 || thum.poster_path == null ? null : (
                   <ThumContainer>
                     <Title>{thum.name}</Title>
                     <Thum
@@ -207,6 +208,7 @@ const DetailPresenter = ({ result, loading, error }) =>
                 )
               )}
         </Seasons>
+        {/*Movie*/}
         <Seasons>
           {result.belongs_to_collection == undefined || null
             ? null
