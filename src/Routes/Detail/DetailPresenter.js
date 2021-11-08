@@ -167,7 +167,6 @@ const DetailPresenter = ({ result, loading, error }) =>
                   </Company>
                 )
               )}
-              {console.log(result.production_companies)}
             </LogoContainer>
           </ItemContainer>
           <Overview>{result.overview}</Overview>
@@ -176,7 +175,7 @@ const DetailPresenter = ({ result, loading, error }) =>
           </DBLink>
           <VideoContainer>
             {result.videos.results.length === 0 ? null : result.videos.results
-                .length > 1 ? (
+                .length >= 2 ? (
               <>
                 <Video
                   src={`https://www.youtube.com/embed/${result.videos.results[0].key}`}
@@ -194,18 +193,34 @@ const DetailPresenter = ({ result, loading, error }) =>
             )}
           </VideoContainer>
         </Data>
-        {console.log(result.seasons.map((name) => name))}
         <Seasons>
-          {result.seasons.map((thum) =>
-            thum === 0 || thum.poster_path === null ? null : (
-              <ThumContainer>
-                <Title>{thum.name}</Title>
-                <Thum
-                  src={`http://image.tmdb.org/t/p/w300/${thum.poster_path}`}
-                />
-              </ThumContainer>
-            )
-          )}
+          {result.seasons === undefined
+            ? null
+            : result.seasons.map((thum) =>
+                thum.length === 0 || thum.poster_path === null ? null : (
+                  <ThumContainer>
+                    <Title>{thum.name}</Title>
+                    <Thum
+                      src={`http://image.tmdb.org/t/p/w300/${thum.poster_path}`}
+                    />
+                  </ThumContainer>
+                )
+              )}
+        </Seasons>
+        <Seasons>
+          {console.log(result.belongs_to_collection)}
+          {result.belongs_to_collection === null
+            ? null
+            : new Array(result.belongs_to_collection).map((thum) =>
+                thum.poster_path === null ? null : (
+                  <ThumContainer>
+                    <Title>{thum.name}</Title>
+                    <Thum
+                      src={`http://image.tmdb.org/t/p/w300/${thum.poster_path}`}
+                    />
+                  </ThumContainer>
+                )
+              )}
         </Seasons>
       </Content>
     </Cotainer>
