@@ -13,6 +13,7 @@ const Container = styled.div`
 
 const Form = styled.form`
   margin-bottom: 50px;
+  margin-top: 10px;
   width: 100%;
 `;
 
@@ -37,7 +38,7 @@ const SearchPresenter = ({
     </Helmet>
     <Form onSubmit={handleSubmit}>
       <Input
-        placeholder="Search Movies or TV Shows..."
+        placeholder="Movies나 TV Shows 검색하기 "
         value={searchTerm}
         onChange={updateTerm}
       />
@@ -55,7 +56,7 @@ const SearchPresenter = ({
                 imageUrl={movie.poster_path}
                 title={movie.original_title}
                 rating={movie.vote_average}
-                year={movie.release_date && movie.release_date.substring(0, 4)} // && 앞이 정의된 후에 substring(0, 4) 년도만 자름
+                year={movie.release_date.substring(0, 4)}
                 isMovie={true}
               />
             ))}
@@ -70,23 +71,22 @@ const SearchPresenter = ({
                 imageUrl={show.poster_path}
                 title={show.original_name}
                 rating={show.vote_average}
-                year={show.first_air_date && show.first_air_dat.substring(0, 4)} // && 앞이 정의된 후에 substring(0, 4) 년도만 자름
-                isMovie={true}
+                year={show.first_air_date.substring(0, 4)}
               />
             ))}
           </Section>
         )}
+        {/* 결과값이 없으면 Message */}
+        {error && <Message color="e74c3c" text={error} />}
+        {/* error 나면 Message */}
+        {tvResults &&
+          movieResults &&
+          tvResults.length === 0 &&
+          movieResults.length === 0 && (
+            <Message color="#95a5a6" text="찾지 못했습니다." />
+          )}
       </>
     )}
-    {error && <Message color="e74c3c" text={error} />}{" "}
-    {/* error 나면 Message */}
-    {tvResults &&
-      movieResults &&
-      tvResults.length === 0 &&
-      movieResults.length === 0 && (
-        <Message color="#95a5a6" text="Nothing Found For" />
-      )}
-    {/* 결과값이 없으면 Message */}
   </Container>
 );
 

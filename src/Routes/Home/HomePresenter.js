@@ -21,8 +21,11 @@ const HomePresenter = ({ nowPlaying, popular, upcoming, loading, error }) => (
       <Loader /> // loading 중일때
     ) : (
       <Container>
+        <Helmet>
+          <title>Movies | Nomflix</title>
+        </Helmet>
         {nowPlaying &&
-          nowPlaying.length > 0 && ( // nowplaying 존재 하나 체크하고 True면 Section 렌더
+        nowPlaying.length > 0 && ( // nowplaying 존재 하나 체크하고 True면 Section 렌더
             <Section title="Now Playing">
               {nowPlaying.map((movie) => (
                 <Poster

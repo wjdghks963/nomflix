@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import React from "react";
 import { moviesApi, tvApi } from "api";
-import SearchContainer from "./SearchContainer";
+import SearchPresenter from "./SearchPresenter";
 
 export default class extends React.Component {
   state = {
@@ -40,18 +40,17 @@ export default class extends React.Component {
       } = await tvApi.search(searchTerm);
       this.setState({ movieResults, tvResults });
     } catch {
-      this.setState({ error: "Can't find results." });
+      this.setState({ error: "결과를 찾을 수 없습니다." });
     } finally {
       this.setState({ loading: false });
     }
   };
 
   render() {
-    const { movieResult, tvResults, searchTerm, loading, error, updateTerm } =
-      this.state;
+    const { movieResults, tvResults, searchTerm, loading, error } = this.state;
     return (
-      <SearchContainer
-        movieResult={movieResult}
+      <SearchPresenter
+        movieResults={movieResults}
         tvResults={tvResults}
         searchTerm={searchTerm}
         loading={loading}

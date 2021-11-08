@@ -12,7 +12,7 @@ const Cotainer = styled.div`
 `;
 
 const Backdrop = styled.div`
-  position: position;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -67,6 +67,29 @@ const Overview = styled.p`
   opacity: 0.7;
   line-height: 1.5;
   width: 50%;
+  padding-bottom: 10px;
+`;
+
+const DBLink = styled.a`
+  font-weight: 700;
+`;
+
+const LogoContainer = styled.div`
+  padding-top: 15px;
+`;
+
+const Logo = styled.img`
+  width: 80px;
+  height: 80px;
+`;
+
+const VideoContainer = styled.div`
+  display: flex;
+  padding-top: 150px;
+`;
+
+const Video = styled.iframe`
+  padding-right: 25px;
 `;
 
 const DetailPresenter = ({ result, loading, error }) =>
@@ -109,7 +132,7 @@ const DetailPresenter = ({ result, loading, error }) =>
                 : result.first_air_date.substring(0, 4)}
             </Item>
             <Divider>-</Divider>
-            <Item>{result.runtime || result.episode_run_time}</Item>
+            <Item>{result.runtime || result.episode_run_time}min</Item>
             <Divider>-</Divider>
             <Item>
               {result.genres &&
@@ -120,8 +143,34 @@ const DetailPresenter = ({ result, loading, error }) =>
                     : `${genre.name} / `
                 )}
             </Item>
+            <LogoContainer>
+              {result.production_companies.map((logo) => (
+                <Logo src={`http://image.tmdb.org/t/p/w500${logo.logo_path}`} />
+              ))}
+            </LogoContainer>
           </ItemContainer>
           <Overview>{result.overview}</Overview>
+          <DBLink href={`https://www.imdb.com/title/${result.imdb_id}`}>
+            Go to IMDB Detail
+          </DBLink>
+          <VideoContainer>
+            {result.videos.results.length > 1 ? (
+              <>
+                <Video
+                  src={`https://www.youtube.com/embed/${result.videos.results[0].key}`}
+                />
+                <Video
+                  src={`https://www.youtube.com/embed/${result.videos.results[1].key}`}
+                />
+              </>
+            ) : (
+              <>
+                <Video
+                  src={`https://www.youtube.com/embed/${result.videos.results[0].key}`}
+                />
+              </>
+            )}
+          </VideoContainer>
         </Data>
       </Content>
     </Cotainer>

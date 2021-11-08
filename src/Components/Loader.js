@@ -14,7 +14,7 @@ const Container = styled.div`
 export default () => (
   <Container>
     <span role="img" aria-label="Loading">
-      Loading
+      준비 중...
     </span>
   </Container>
 );

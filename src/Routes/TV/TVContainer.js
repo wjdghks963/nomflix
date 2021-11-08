@@ -25,7 +25,9 @@ export default class extends React.Component {
       } = await tvApi.airingToday();
       this.setState({ topRated, popular, airingToday });
     } catch {
-      this.setState({ error: "Can't find tv information." });
+      this.setState({
+        error: "TV 정보를 찾을 수 없습니다.",
+      });
     } finally {
       this.setState({ loading: false });
     }
@@ -33,6 +35,9 @@ export default class extends React.Component {
 
   render() {
     const { topRated, popular, airingToday, loading, error } = this.state;
+    {
+      console.log(topRated);
+    }
     return (
       <TVPresenter
         topRated={topRated}
