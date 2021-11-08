@@ -208,7 +208,6 @@ const DetailPresenter = ({ result, loading, error }) =>
               )}
         </Seasons>
         <Seasons>
-          {console.log(result.belongs_to_collection)}
           {result.belongs_to_collection === null
             ? null
             : new Array(result.belongs_to_collection).map((thum) =>
