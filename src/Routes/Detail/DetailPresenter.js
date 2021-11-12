@@ -198,7 +198,9 @@ const DetailPresenter = ({ result, loading, error }) =>
           {result.seasons == undefined
             ? null
             : result.seasons.map((thum) =>
-                thum.length === 0 || thum.poster_path == null ? null : (
+                thum.length === 0 ||
+                thum.poster_path == null ||
+                undefined ? null : (
                   <ThumContainer>
                     <Title>{thum.name}</Title>
                     <Thum
