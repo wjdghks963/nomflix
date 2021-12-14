@@ -22,9 +22,9 @@ Learning React & ES6
 
 ## Code Challenges
 
-- [ ] IMDB Link
-- [ ] Tabs inside of Movie / Show Details (YT Videos, Production Campany)
-- [ ] Collections Link
+- [x] IMDB Link
+- [x] Tabs inside of Movie / Show Details (YT Videos, Production Campany)
+- [x] Collections Link
 - [ ] /collections Route
 - [ ] On TV Show, Show Sessions
 
